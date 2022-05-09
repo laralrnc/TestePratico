@@ -1,0 +1,5 @@
+package com.lara.testepratico.repository;
+
+public interface ClienteRepository {
+
+}

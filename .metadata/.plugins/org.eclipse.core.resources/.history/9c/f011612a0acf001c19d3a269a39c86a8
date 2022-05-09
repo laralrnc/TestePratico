@@ -1,0 +1,64 @@
+package com.lara.testepratico.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.lara.testepratico.model.Deslocamento;
+import com.lara.testepratico.repository.DeslocamentoRepository;
+
+@RestController
+@RequestMapping("/deslocamentos")
+@CrossOrigin(origins="*", allowedHeaders = "*")
+public class DeslocamentoController {
+	
+	@Autowired
+	private DeslocamentoRepository deslocamentorepository;
+	
+	//exibe todas as movimentações
+	@GetMapping
+	public ResponseEntity<List<Deslocamento>> getAll (){
+		return ResponseEntity.ok(deslocamentorepository.findAll());
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Deslocamento> getById(@PathVariable Long id){
+		return deslocamentorepository.findById(id)
+				.map(resposta -> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@PostMapping
+	public ResponseEntity<Deslocamento> postDeslocamento (@Valid @RequestBody Deslocamento deslocamento){
+		return ResponseEntity.status(HttpStatus.CREATED).body(deslocamentorepository.save(deslocamento));
+	}
+	
+	@PutMapping
+	public ResponseEntity<Deslocamento> putDeslocamento (@RequestBody Deslocamento deslocamento){
+		return ResponseEntity.status(HttpStatus.OK).body(deslocamentorepository.save(deslocamento));
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteDeslocamento(@PathVariable long id) {
+		return deslocamentorepository.findById(id).map(resposta -> 
+		{
+			deslocamentorepository.deleteById(id);
+				return ResponseEntity.noContent().build();
+		}).orElse(ResponseEntity.notFound().build());
+		
+	}
+
+}

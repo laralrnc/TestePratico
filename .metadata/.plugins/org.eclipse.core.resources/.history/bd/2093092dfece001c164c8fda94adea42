@@ -1,0 +1,61 @@
+package com.lara.testepratico.model;
+
+import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+@Table(name = "tb_movimentacoes")
+public class Movimentacoes {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+	@NotBlank
+	private String Tipomovimentacao;
+	
+	@NotBlank
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    private Date dataInicio;
+    
+    @NotBlank
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    private Date dataFim;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
+	
+	
+
+
+
+}

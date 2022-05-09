@@ -1,0 +1,17 @@
+
+package com.lara.testepratico.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.lara.testepratico.model.Movimentacoes;
+
+@Repository
+public interface MovimentacoesRepository extends JpaRepository <Movimentacoes, Long> {
+	
+	List <Movimentacoes> findAllByTipomovimentacaoContainingIgnoreCase (String Tipomovimentacao);
+
+}
+
+
