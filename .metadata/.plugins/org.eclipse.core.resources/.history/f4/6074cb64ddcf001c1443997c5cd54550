@@ -1,0 +1,5 @@
+package com.lara.testepratico.service;
+
+public class UsuarioService {
+
+}

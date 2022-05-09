@@ -71,8 +71,5 @@ public class ConteinerController {
 		return ResponseEntity.ok(conteinerrepository.findAllByCategoriaContainingIgnoreCase(categoria));
 	}
 	
-	
-	
-
 
 }

@@ -1,0 +1,5 @@
+package com.lara.testepratico.security;
+
+public class UserDetailsServiceImp {
+
+}

@@ -54,7 +54,6 @@ public class ClienteController {
 					return ResponseEntity.ok().body(clienterepository.save(cliente));
 				})
 				.orElse(ResponseEntity.notFound().build());
-
 	}
 	
 }
